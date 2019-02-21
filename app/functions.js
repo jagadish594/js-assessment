@@ -10,7 +10,27 @@ functionsAnswers = {
    * @returns Whatever fn would return
    */
   argsAsArray: function argsAsArray(fn, arr) {
-
+    function fn(arr){
+      let prevStr = '', strArr = [];
+      for(let i=0; i< arr.length; i++) {
+        if(arr[i] !== 'undefined!'){
+          if(arr[i] === '!'){
+            prevStr = strArr.pop();
+            arr[i] = prevStr+arr[i];
+          }
+          if(i === 0){
+            arr[i] = arr[i]+', ';
+          }
+          strArr.push(arr[i]);
+        }
+      }
+      //const result = strArr.join(' ');
+      const result = strArr.join("");
+      console.log(strArr);
+      console.log(result);
+      return result;
+    }
+    return fn(arr);
   },
 
   /**
@@ -27,6 +47,9 @@ functionsAnswers = {
    * that begins with str + ', ' + that 1 argument.
    */
   functionFunction: function functionFunction(str) {
-
+    function inner(str2){
+      return str + ',' + " " + str2;
+    }
+    return inner;
   },
 };
